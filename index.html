@@ -28,3 +28,177 @@
         <textarea id='favorite_names_textarea' rows=30 cols=30></textarea>
     </div>
 </body>
+<script>
+    $(document).ready(function(){
+
+    console.log('hello world');
+
+    jin_data = [
+        ["cái","才","cǎi","彩"],
+        ["chéng","诚","承","成","chén","晨"],
+    ];
+    console.log('jin_data=', jin_data);
+
+    shui_data = [
+        ["féng","逢","fèng","凤","fēng","风","fēn","纷"],
+        ["píng","平","萍","pǐn","品"],
+    ];
+    console.log('shui_data=', shui_data);
+
+    function save_favorite() {
+        pinyin = this.getAttribute('pinyin');
+        name = this.getAttribute('name');
+        this.disabled = true;
+
+        old_favorite = $.cookie("favorite_cookie");
+        if (typeof old_favorite == 'undefined') {
+            console.log("undefined old_favorite when save favorite, set empty string");
+            old_favorite = "";
+        } else {
+            old_favorite = old_favorite + "\n"
+        }
+
+        new_favorite = old_favorite
+            + pinyin + Array(15 - pinyin.length).join(" ") + " , " + name;
+        $.cookie("favorite_cookie", new_favorite, { expires: 365 });
+
+        $('#cancel_modify_button').get(0).click();
+        $('#list_favorite_button').get(0).click();
+    }
+
+    /**
+     * Returns a random integer between min (inclusive) and max (exclusive)
+     * Using Math.round() will give you a non-uniform distribution!
+     */
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    function generateWordsDict(words) {
+        var dic = {}
+        var indice = 0
+        var last_key = ''
+
+        while (indice < words.length && words[indice]) {
+            // console.log('words[indice]:', words[indice])
+            if (('a' <= words[indice][0] && words[indice][0] <= 'z') ||
+                'é' == words[indice][0]) {
+                last_key = words[indice]
+                dic[last_key] = [];
+            } else {
+                dic[last_key].push(words[indice])
+            }
+            indice = indice + 1;
+        }
+
+        return dic;
+    }
+
+    $('#list_favorite_button').get(0).onclick = function list_favorite() {
+        console.log('List_favorite');
+
+        $('#list_favorite_div').get(0).hidden = true;
+
+        old_favorite = $.cookie("favorite_cookie");
+        if (typeof old_favorite == 'undefined') {
+            console.log("undefined old_favorite when list favorite, set empty string");
+            old_favorite = "";
+        }
+        $('#favorite_names_textarea').get(0).value = old_favorite;
+
+        $('#modify_div').get(0).hidden = false;
+    }
+    
+    $('#cancel_modify_button').get(0).onclick = function cancel_modify() {
+        console.log('Cancel_modify');
+
+        $('#modify_div').get(0).hidden = true;
+        $('#list_favorite_div').get(0).hidden = false;
+    }
+
+    $('#save_modify_button').get(0).onclick = function save_modify() {
+        console.log('Save_modify()', $('#favorite_names_textarea').get(0).value);
+
+        $('#modify_div').get(0).hidden = true;
+
+        $.cookie("favorite_cookie", 
+            $('#favorite_names_textarea').get(0).value,
+            { expires: 365 });
+
+        $('#list_favorite_div').get(0).hidden = false;
+    }
+
+    $('#generate_name_button').get(0).onclick = function generate_name() { 
+        console.log("Generate_name()");
+
+        jin_index = getRandomInt(0, window.jin_data.length);
+        shui_index = getRandomInt(0, window.shui_data.length);
+        jin_words = window.jin_data[jin_index];
+        shui_words = window.shui_data[shui_index];
+        
+        console.log('jin_index:', jin_index);
+        console.log('shui_index:', shui_index);
+        console.log('jin_words:', jin_words);
+        console.log('shui_words:', shui_words);
+
+        // if (jin_words[0].length > shui_words[0].length) {
+        //     order = 0;
+        // } else if (jin_words[0].length < shui_words[0].length) {
+        //     order = 1;
+        // } else {
+        //     order = getRandomInt(0, 2);
+        // }
+        order = getRandomInt(0, 2);
+
+        //// Test js dictionary usage
+        // var dic = {'hehe:':[1,2,3], 'bibi:':[4,5,6]};
+        // dic['mama'] = [];
+        // dic['mama'].push(7);
+        // dic['mama'].push(8);
+        // dic['mama'].push(9);
+        // for (key in dic) {
+        //     console.log('key:', key);
+        //     console.log('value:', dic[key]);
+        // }
+
+        jin_dic = generateWordsDict(jin_words);
+        shui_dic = generateWordsDict(shui_words);
+        if (order == 0) {
+            first_dic = jin_dic;
+            second_dic = shui_dic;
+        } else {
+            first_dic = shui_dic;
+            second_dic = jin_dic;
+        }
+
+        html = ""
+        for (first_pinyin in first_dic) {
+            for (second_pinyin in second_dic) {
+                name_pinyin = "zheng " + first_pinyin + " " + second_pinyin;
+                console.log(name_pinyin);
+                html += "<div><p>" + name_pinyin + "</p>";
+                for (first_word_indice in first_dic[first_pinyin]) {
+                    for (second_word_indice in second_dic[second_pinyin]) {
+                        name_chinese = "郑" + " "
+                        + first_dic[first_pinyin][first_word_indice] + " "
+                        + second_dic[second_pinyin][second_word_indice]
+                        console.log(name_chinese);
+                        html += "<div><p style=\"display:inline;margin-right:30px\">" + name_chinese + "</p>"
+                        html += "<button class=\"save_favorite_class\" pinyin=\"" 
+                        + name_pinyin + "\" name=\"" + name_chinese + "\">收藏</button></div>"
+                    }
+                }
+                html += "</div>"
+            }
+        }
+
+        $('#generated_names_div').get(0).innerHTML = html;
+
+        $('.save_favorite_class').each(function(i, obj) {
+            obj.addEventListener("click", save_favorite, false);
+        });
+    }
+
+    })
+</script>
+</html>
