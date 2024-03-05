@@ -34,16 +34,131 @@
     console.log('hello world');
 
     jin_data = [
-        ["cái","才","cǎi","彩"],
-        ["chéng","诚","承","成","chén","晨"],
+["chà","姹",],
+["chán","婵",],
+["cháng","嫦",],
+["cháo","朝","chāo","超",],
+["chén","晨",],
+["chéng","诚","承","成",],
+["chóng","崇","chǒng","宠",],
+["chún","纯","chūn","春",],
+["chū","初","chǔ","楚",],
+["cái","才","cǎi","彩",],
+["cí","慈","辞",],
+["cóng","琮","cōng","聪",],
+["cún","存",],
+["duàn","锻",],
+["dé","得",],
+["dù","度",],
+["jié","捷",],
+["jìng","静","净","镜","靖",],
+["jūn","钧",],
+["jǐn","锦",],
+["míng","铭",],
+["měi","镁",],
+["níng","甯",],
+["qiàn","倩","qián","前","qiān","千",],
+["qiáng","嫱",],
+["qiū","秋",],
+["què","雀",],
+["qí","齐",],
+["qù","趣",],
+["qīng","青",],
+["ruì","瑞","睿",],
+["rán","然",],
+["rén","仁",],
+["róng","镕",],
+["róu","柔",],
+["rú","如","儒",],
+["shuāng","双","shuǎng","爽",],
+["shàn","善","shān","珊","姗","衫",],
+["shào","劭","sháo","韶",],
+["shèng","盛","胜","shēng","声","shěng","省",],
+["shì","是","shí","时","识","实","shī","诗","施","师","shǐ","始",],
+["shù","数","shū","纾","抒","舒","书","姝",],
+["shùn","顺",],
+["shā","砂",],
+["sì","姒","sī","思","斯","丝",],
+["tóng","童",],
+["xiàn","限","xiān","先","纤","仙",],
+["xiào","笑",],
+["xiè","谢",],
+["xiù","秀","琇","xiū","修",],
+["xiǎng","想",],
+["xuàn","绚","xuān","宣",],
+["xì","细","xī","昔","悉","惜","兮","羲","夕",],
+["xìn","信","xīn","心","歆","鑫","辛","馨",],
+["xù","续","絮",],
+["xún","询",],
+["xīng","星",],
+["yuè","悦",],
+["yù","裕","钰","喻","yú","愉","瑜",],
+["zhuāng","庄","妆",],
+["zhì","峙","帜",],
+["zhù","助","zhū","珠",],
+["zhēn","真",],
+["zhōng","钟",],
+["zhūn","谆",],
+["zài","再",],
+["zàn","赞",],
+["zì","字","zī","姿","孜","zǐ","紫",],
+["zǎo","早",],
+["ér","儿",],
     ];
     console.log('jin_data=', jin_data);
 
-    shui_data = [
-        ["féng","逢","fèng","凤","fēng","风","fēn","纷"],
-        ["píng","平","萍","pǐn","品"],
+    tu_data = [
+["bì","璧",],
+["chén","辰",],
+["chǔ","础",],
+["dié","碟",],
+["dī","堤",],
+["huà","画",],
+["jìng","境",],
+["luán","峦",],
+["lán","岚",],
+["lì","砾",],
+["lǐng","岭",],
+["méi","嵋",],
+["mǔ","牡",],
+["niǎo","鸟",],
+["què","确",],
+["qí","崎","圻","岐",],
+["róng","容","融","嵘",],
+["shèng","圣",],
+["tián","填",],
+["wá","娃",],
+["wèi","尉","wéi","韦","维","帏","唯","惟","wěi","玮","娓",],
+["wǎn","婉","宛","琬",],
+["wǎng","往",],
+["xiá","瑕","峡",],
+["xián","娴",],
+["xiù","岫",],
+["xuān","轩",],
+["yuán","园","缘","垣","圆","yuān","鸳",],
+["yuè","越","阅",],
+["yà","娅","亚","yā","丫",],
+["yàn","燕","砚","宴","艳","堰","嬿","yān","焉","嫣",],
+["yào","要",],
+["yáng","阳","yāng","央",],
+["yè","叶",],
+["yì","忆","亦","亿","怿","异","懿","佚","逸","yí","怡","颐","yī","依","伊","医","衣","祎","yǐ","旖","以",],
+["yín","垠","yīn","姻","音","殷","因","yǐn","尹",],
+["yíng","迎","yīng","缨","瑛","璎","膺","yǐng","影",],
+["yòu","宥","幼","又","yóu","由","yōu","优","攸","悠",],
+["yù","育","域","欲","彧","yú","于","玙","yǔ","羽","宇","予","与","屿",],
+["yùn","韵","韫","yǔn","允",],
+["yǒng","永","甬","咏",],
+["zhēng","峥",],
+["zì","字",],
+["ài","嫒","艾","爱","瑷",],
+["ào","奥","傲",],
+["ā","阿",],
+["ān","安",],
+["ēn","恩",],
+["ōu","鸥",],
     ];
-    console.log('shui_data=', shui_data);
+    console.log('tu_data=', tu_data);
 
     function save_favorite() {
         pinyin = this.getAttribute('pinyin');
@@ -132,18 +247,18 @@
         console.log("Generate_name()");
 
         jin_index = getRandomInt(0, window.jin_data.length);
-        shui_index = getRandomInt(0, window.shui_data.length);
+        tu_index = getRandomInt(0, window.tu_data.length);
         jin_words = window.jin_data[jin_index];
-        shui_words = window.shui_data[shui_index];
+        tu_words = window.tu_data[tu_index];
         
         console.log('jin_index:', jin_index);
-        console.log('shui_index:', shui_index);
+        console.log('tu_index:', tu_index);
         console.log('jin_words:', jin_words);
-        console.log('shui_words:', shui_words);
+        console.log('tu_words:', tu_words);
 
-        // if (jin_words[0].length > shui_words[0].length) {
+        // if (jin_words[0].length > tu_words[0].length) {
         //     order = 0;
-        // } else if (jin_words[0].length < shui_words[0].length) {
+        // } else if (jin_words[0].length < tu_words[0].length) {
         //     order = 1;
         // } else {
         //     order = getRandomInt(0, 2);
@@ -162,12 +277,12 @@
         // }
 
         jin_dic = generateWordsDict(jin_words);
-        shui_dic = generateWordsDict(shui_words);
+        tu_dic = generateWordsDict(tu_words);
         if (order == 0) {
             first_dic = jin_dic;
-            second_dic = shui_dic;
+            second_dic = tu_dic;
         } else {
-            first_dic = shui_dic;
+            first_dic = tu_dic;
             second_dic = jin_dic;
         }
 
